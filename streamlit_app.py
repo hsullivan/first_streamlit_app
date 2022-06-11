@@ -35,3 +35,10 @@ streamlit.dataframe(fruityvice_normalized)
 
 
 import snowflake.connector
+
+my_cnx = snowflake.connector.conect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("HEllow from Snowflake:")
+streamlit.rext(my_data_row)
